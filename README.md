@@ -9,7 +9,7 @@ This project divided into sections every section contain few steps will make you
 
 
 ## Sections:
-  [] Prepare system .
-  [] UI build .
-  [] Test code & Real world test .
+- []Prepare system .
+- [] UI build .
+- [] Test code & Real world test .
   
