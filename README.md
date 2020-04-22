@@ -13,3 +13,11 @@ This project divided into few sections every section contain few steps, that wil
 - [🤚] UI build .
 - [🤚] Test code & Real world test .
   
+
+
+# Prepare system :
+
+- Download raspian lite version .
+https://www.raspberrypi.org/downloads/raspbian/
+
+Make sure it is lite version since we want only black console only .
