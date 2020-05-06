@@ -1,8 +1,9 @@
-~~watermelon~~
+![alt text](water-icon.png)
 
 
 
-This project still in development.
+
+
 
 # Introduction :
 
