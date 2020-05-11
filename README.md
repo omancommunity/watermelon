@@ -18,8 +18,8 @@ This project divided into few sections every section contain few steps,
 - [🤚] Test code & Real world test .
   
 
-
-# Prepare system :
+# Section One:
+## Prepare system :
 
 - Download raspian lite version .<br/><br/>
 https://www.raspberrypi.org/downloads/raspbian/
@@ -143,9 +143,153 @@ $ sudo service smbd restart
 ```
 
 
+### Create Splash Screen :
+
+```bash
+# install fbi
+$ sudo apt install fbi
+# create directory where our splash image 
+$ cd ~ && mkdir others && cd others && mkdir splash && cd ~
+```
+
+after that open any application can manage art with image ```W 480 x H 320```
+in my case I will use sketch application .
+
+![alt text](Screen Shot 2020-05-11 at 3.38.41 AM.png)
+
+open new terminal and copy image you just create to raspberry pi :
+
+```bash
+$ scp watermelon_splash.png python@192.168.8.135:/home/python/others/splash/
+# disable tty
+$ sudo systemctl disable getty@tty1
+```
+
+Now create new service call it splashservice and paste the following :
+
+
+first create service file:
+```bash
+sudo nano /etc/systemd/system/splashscreen.service
+```
+
+now copy/paste the following:
+
+```bash
+
+[Unit]
+Description=Splash screen
+DefaultDependencies=no
+After=local-fs.target
+
+[Service]
+ExecStart=/usr/bin/fbi -d /dev/fb1 --noverbose -a /home/ayoob/others/splash/splash.png
+StandardInput=tty
+StandardOutput=tty
+
+[Install]
+WantedBy=sysinit.target
+
+```
+
+
+activate our service :
+
+```bash
+$ sudo systemctl enable splashscreen
+# test our splash
+$ sudo systemctl start splashscreen
+```
+keep in mind this will display only non animated image so gif will not work and I don't recommand but it can be , but here I will
+use non-animated image simple png .
+---
+# Section Two:
+## UI build (UI for our application for above last code can be include here if you want):
+
+So our screen lcd here is 3.5 inch lcd 480 x 320 I buy it from amazon you can also from here .
+<br>
+https://www.amazon.com/Raspberry-Cooling-Heatsink-320x480-Monitor/dp/B07WRV48ZW
+<br>
+to make lcd work you should add few things to work properly .
+Connect to your raspbery pi then & make sure git already installed then:
+
+```bash
+$ git clone https://github.com/goodtft/LCD-show.git
+$ chmod -R 755 LCD-show
+$ cd LCD-show/
+$ sudo ./MHS35-show
+```
+
+in case you don't have lcd or monitor with hdmi just do the following :
+```bash
+$ git clone https://github.com/goodtft/LCD-show.git
+$ cd LCD-show
+$ sudo cp ./usr/mhs35-overlay.dtb /boot/overlays/
+$ sudo cp -rf ./usr/99-calibration.conf-mhs35  /etc/X11/xorg.conf.d/99-calibration.conf
+$ sudo cp -rf ./usr/99-fbturbo-fbcp.conf  /usr/share/X11/xorg.conf.d/99-fbturbo.conf
+$ sudo git clone https://github.com/tasanakorn/rpi-fbcp
+$ sudo mkdir ./rpi-fbcp/build
+$ cd ./rpi-fbcp/build/
+$ sudo cmake ..
+$ sudo make
+$ sudo install fbcp /usr/local/bin/fbcp
+$ sudo apt-get install xserver-xorg-input-evdev
+$ sudo cp -rf /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/45-evdev.conf
+```
+
+
+
+change ```/boot/config.txt``` :
+
+```bash
+$ sudo nano /boot/config.txt
+```
+
+and copy/past following :
+```bash
+dtoverlay=mhs35-overlay
+hdmi_force_hotplug=1
+hdmi_group=2
+hdmi_mode=1
+hdmi_mode=87
+hdmi_cvt 480 320 60 6 0 0 0
+hdmi_drive=2
+```
+
+change ```/boot/cmdline.txt``` :
+```bash
+$ sudo nano /boot/cmdline.txt
+```
+
+and copy/past following (make sure to add in same line with space only):
+
+```bash
+fbcon=map:10 fbcon=font:ProFont6x11 logo.nologo
+```
+
+```bash
+# fillay reboot your device
+$ sudo reboot
+```
+
+Now you should be able to see our splash screen .
+
+![alt text](something2.gif)
+
+
 🤝 you have configure properly your raspian os as we need excpect few
 other package and simple configure for next step we will 
 go through .
+
+
+
+
+
+
+
+
+
+
 
 
 Steps and free materials under MIT License/ others including Application GUI under GPL2 or as compatible License for Qt5 License as it mention what License should be,

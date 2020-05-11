@@ -3,7 +3,8 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from App.ui.main import MainWindow
 import logging
-logging.basicConfig(level=logging.WARNING)
+
+logging.basicConfig(level=logging.INFO)
 
 
 class App(QtWidgets.QMainWindow):
@@ -13,24 +14,20 @@ class App(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
 
-
 def main():
     """
-    To Hide mouse cursor
-    fb.setCursor(Qt.BlankCursor)
-
-    and To Show mouse cursor (parent's
-    cursor is used) fb.unsetCursor()
-    :return:
+    # To Hide mouse cursor
+    window.setCursor(Qt.BlankCursor)
+    # To Show mouse cursor (parent's cursor is used)
+    window.unsetCursor()
     """
     app = QtWidgets.QApplication(sys.argv)
-    fb = App()
-    fb.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
-    fb.setCursor(Qt.BlankCursor)
-    fb.show()
+    window = App()
+    window.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
+    window.setCursor(Qt.BlankCursor)
+    window.show()
     app.exec_()
-
-
+    logging.info("Application start .... ")
 
 
 if __name__ == '__main__':
