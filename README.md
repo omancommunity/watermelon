@@ -155,7 +155,11 @@ $ cd ~ && mkdir others && cd others && mkdir splash && cd ~
 after that open any application can manage art with image ```W 480 x H 320```
 in my case I will use sketch application .
 
-![alt text](Screen Shot 2020-05-11 at 3.38.41 AM.png)
+
+
+![alt text](Screen_Shot.png)
+
+
 
 open new terminal and copy image you just create to raspberry pi :
 
@@ -200,8 +204,12 @@ $ sudo systemctl enable splashscreen
 # test our splash
 $ sudo systemctl start splashscreen
 ```
+
+
 keep in mind this will display only non animated image so gif will not work and I don't recommand but it can be , but here I will
 use non-animated image simple png .
+
+
 ---
 # Section Two:
 ## UI build (UI for our application for above last code can be include here if you want):
@@ -292,8 +300,9 @@ go through .
 
 
 
-Steps and free materials under MIT License/ others including Application GUI under GPL2 or as compatible License for Qt5 License as it mention what License should be,
-This simple project is an open source project for us to learn and for study only .
+Steps and free materials under MIT License/ others including Application GUI under GPL2 .
+
+
 
 ```bash
 MIT License
