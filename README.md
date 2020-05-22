@@ -3,23 +3,21 @@
 
 
 
-
-
 # Introduction :
 
 This project divided into few sections every section contain few steps,
- that will make your pi able to run simple GUI app in python with splash 
- and all other friends.
+that will make your pi able to run simple GUI app in python with splash 
+and all other friends .
 
 
 ## Sections:
-- [👍🏻]Prepare system .
-- [🤚] UI build .
-- [🤚] Test code & Real world test .
+- [✅]Prepare system .
+- [❎] UI build .
+- [❎] Test code & Real world test .
   
 
-# Section One:
-## Prepare system :
+## Section One:
+#### Prepare system :
 
 - Download raspian lite version .<br/><br/>
 https://www.raspberrypi.org/downloads/raspbian/
@@ -30,19 +28,18 @@ Make sure it is lite version since we want only black console only .
 
 ---
 
-After download the respian make sure to mount it using
+After download the respian buster lite version make sure to mount it using
 any application can mount the img .
 
-Next, create wifi config file for auto detect your wifi password
-after first boot in case you don't connect your board
-to lcd or monitor with hdmi .
+Next, create wifi config file for auto detect our wifi password
+after first boot in case you don't connect your board to lcd or monitor with hdmi .
 
-To create wifi config file create new file and past the
-following information of your router :
+To create ```wpa_supplicant.conf```  file and paste the following information of your router :
 
 ```bash
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
+
 # in my case I am form oman put your country code
 country=OM
 
@@ -51,25 +48,21 @@ network={
  psk="WIFI PASSWORD"
 }
 ```
-save it as ```wpa_supplicant.conf``` and move the
-file into mounted raspian os on your Computer .
-Also create file with name ```ssh``` and move it to 
-raspian os on your Computer without any extension just ssh .
-to <b>enable</b> ```ssh``` .
+save it as ```wpa_supplicant.conf``` and move the file into mounted raspian os on your Computer .
+Also create new file with name ```ssh``` without any extension and move it to your mounted raspian os img to <b>enable</b> ```ssh``` .
 
 
-unmout ```sdcard``` form your comupter and put it in your 
-pi and boot the raspberry pi .
+unmout ```sdcard``` form your comupter, Next, put it in your  pi and boot the raspberry pi normally.
 
 
 to look around for ip of your raspberry pi you can 
 use any application to lookup for ip on your router .
 
-or just use router setting to figure out the raspberry pi
-local ip .
+or just use your ```router setting``` to figure out the raspberry pi local ip .
 
-In my case I will use arp-scan .
+In my case I will use arp-scan (use any application for example nmap```just google that```) .
 
+<small>using  arp-scan with sudo in mac and linux</small>
 ```bash
 # using  arp-scan with sudo in mac and linux
 $ sudo arp-scan --lcoal
@@ -93,6 +86,7 @@ $ sudo  nano /etc/apt/sources.list
 $ sudo apt update
 $ sudo apt list --upgradeable
 $ sudo apt dist-upgrade 
+# add new user , here user name is python you can add any user you like
 $ sudo adduser python
 # add python user to sudo group 
 $ sudo adduser python sudo
@@ -211,8 +205,8 @@ use non-animated image simple png .
 
 
 ---
-# Section Two:
-## UI build (UI for our application for above last code can be include here if you want):
+## Section Two:
+#### UI build (UI for our application for above last code can be include here if you want):
 
 So our screen lcd here is 3.5 inch lcd 480 x 320 I buy it from amazon you can also from here .
 <br>
