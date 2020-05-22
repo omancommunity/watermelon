@@ -123,7 +123,7 @@ $ sudo nano /etc/samba/smb.conf
 
 ```bash
 [salalah-hacker] 
-     comment= Salalah Hacker 
+     comment=Salalah Hacker 
      path=/home/python 
      browseable=Yes 
      writeable=Yes 
@@ -174,7 +174,7 @@ Now create new service call it splashservice and paste the following :
 
 first create service file:
 ```bash
-sudo nano /etc/systemd/system/splashscreen.service
+sudo nano /etc/systemd/system/splashservice.service
 ```
 
 now copy/paste the following:
@@ -182,12 +182,12 @@ now copy/paste the following:
 ```bash
 
 [Unit]
-Description=Splash screen
+Description=Splash
 DefaultDependencies=no
 After=local-fs.target
 
 [Service]
-ExecStart=/usr/bin/fbi -d /dev/fb1 --noverbose -a /home/ayoob/others/splash/splash.png
+ExecStart=/usr/bin/fbi -d /dev/fb1 --noverbose -a /home/python/others/splash/splash.png
 StandardInput=tty
 StandardOutput=tty
 
@@ -200,9 +200,9 @@ WantedBy=sysinit.target
 activate our service :
 
 ```bash
-$ sudo systemctl enable splashscreen
+$ sudo systemctl enable splashservice
 # test our splash
-$ sudo systemctl start splashscreen
+$ sudo systemctl start splashservice
 ```
 
 
@@ -242,13 +242,11 @@ $ sudo cmake ..
 $ sudo make
 $ sudo install fbcp /usr/local/bin/fbcp
 $ sudo apt-get install xserver-xorg-input-evdev
-$ sudo cp -rf /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/45-evdev.conf
 ```
 
 
 
 change ```/boot/config.txt``` :
-
 ```bash
 $ sudo nano /boot/config.txt
 ```
@@ -276,7 +274,7 @@ fbcon=map:10 fbcon=font:ProFont6x11 logo.nologo
 ```
 
 ```bash
-# fillay reboot your device
+# finally reboot your device
 $ sudo reboot
 ```
 
@@ -285,12 +283,12 @@ Now you should be able to see our splash screen .
 ![alt text](something2.gif)
 
 
-🤝 you have configure properly your raspian os as we need excpect few
+🧨 you have configure properly your raspian os as we need excpect few
 other package and simple configure for next step we will 
 go through .
 
 
-
+---
 
 
 
